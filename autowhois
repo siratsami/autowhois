@@ -1,0 +1,13 @@
+#!/bin/bash
+
+echo ""
+echo " AutoWhois to find targets registered domain by B4GG3R"
+echo " Usage: autowhois domains TargetName"
+echo ""
+echo " Finding $2 regsitered domains"
+echo ""
+
+for domain in $(cat $1); do whois $domain | awk -F' ' {'print $3'} | grep $2 | sort -u | grep --color=always -A 1 $2 && echo "Domain: $domain"; done
+
+echo ""
+echo " Done"
